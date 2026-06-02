@@ -385,14 +385,8 @@
 
             <div class="section active" id="dias-entre-datas">
                 <h2>Diferença entre Datas</h2>
-                <div class="aviso-contagem">⚠️ Configuração da regra de contagem de prazo</div>
+                <div class="aviso-contagem">Regra de Contagem Padrão: D+0 (inclui o dia inicial)</div>
                 
-                <label>Critério de Início:</label>
-                <select id="dif-criterio">
-                    <option value="0">D+0 (ex: calcular incluindo hoje)</option>
-                    <option value="1">D+1 (ex: calcular a partir do dia seguinte)</option>
-                </select>
-
                 <label>Data Inicial:</label>
                 <input type="date" id="dif-data1">
                 
@@ -405,13 +399,7 @@
 
             <div class="section" id="somar-dias">
                 <h2>Somar Dias à Data</h2>
-                <div class="aviso-contagem">⚠️ Configuração da regra de contagem de prazo</div>
-
-                <label>Critério de Início:</label>
-                <select id="soma-criterio">
-                    <option value="0">D+0 (ex: calcular incluindo hoje)</option>
-                    <option value="1">D+1 (ex: calcular a partir do dia seguinte)</option>
-                </select>
+                <div class="aviso-contagem">Regra de Contagem Padrão: D+1 (calcula a partir do dia seguinte)</div>
 
                 <label>Data Base:</label>
                 <input type="date" id="soma-data">
@@ -425,13 +413,7 @@
 
             <div class="section" id="subtrair-dias">
                 <h2>Subtrair Dias da Data</h2>
-                <div class="aviso-contagem">⚠️ Configuração da regra de contagem de prazo</div>
-
-                <label>Critério de Início:</label>
-                <select id="sub-criterio">
-                    <option value="0">D+0 (ex: calcular incluindo hoje)</option>
-                    <option value="1">D+1 (ex: calcular a partir do dia seguinte)</option>
-                </select>
+                <div class="aviso-contagem">Regra de Contagem Padrão: D+1 (calcula a partir do dia anterior)</div>
 
                 <label>Data Base:</label>
                 <input type="date" id="sub-data">
@@ -445,13 +427,7 @@
 
             <div class="section" id="dias-uteis">
                 <h2>Cálculo de Dias Úteis</h2>
-                <div class="aviso-contagem">⚠️ Configuração da regra de contagem de prazo</div>
-
-                <label>Critério de Início:</label>
-                <select id="util-criterio">
-                    <option value="0">D+0 (ex: calcular incluindo hoje)</option>
-                    <option value="1">D+1 (ex: calcular a partir do dia seguinte)</option>
-                </select>
+                <div class="aviso-contagem">Regra de Contagem Padrão: D+0 (Sábados e Domingos são não úteis)</div>
 
                 <label>Data Inicial:</label>
                 <input type="date" id="util-data1">
@@ -460,7 +436,6 @@
                 <input type="date" id="util-data2">
                 
                 <div class="checkbox-group">
-                    <label><input type="checkbox" id="considerar-sabado"> Considerar Sábado como útil</label>
                     <label><input type="checkbox" id="descontar-feriados"> Descontar Feriados Nacionais (Brasil)</label>
                     <label><input type="checkbox" id="descontar-recife"> Descontar Feriados Municipais (Recife/PE)</label>
                 </div>
@@ -733,7 +708,7 @@
     function calcularDiferenca() {
         const d1 = document.getElementById('dif-data1').value;
         const d2 = document.getElementById('dif-data2').value;
-        const criterio = parseInt(document.getElementById('dif-criterio').value);
+        const criterio = 0; // Travado em D+0 conforme pedido
         
         if (!d1 || !d2) {
             document.getElementById('res-diferenca').innerText = "Por favor, preencha ambas as datas.";
@@ -779,7 +754,7 @@
     function calcularSoma() {
         const dataBaseInput = document.getElementById('soma-data').value;
         let diasParaSomar = parseInt(document.getElementById('soma-qtd').value);
-        const criterio = parseInt(document.getElementById('soma-criterio').value);
+        const criterio = 1; // Travado em D+1 conforme pedido
 
         if (!dataBaseInput || isNaN(diasParaSomar)) {
             document.getElementById('res-soma').innerText = "Por favor, preencha a data e a quantidade de dias.";
@@ -814,7 +789,7 @@
     function calcularSubtracao() {
         const dataBaseInput = document.getElementById('sub-data').value;
         let diasParaSubtrair = parseInt(document.getElementById('sub-qtd').value);
-        const criterio = parseInt(document.getElementById('sub-criterio').value);
+        const criterio = 1; // Travado em D+1 conforme pedido
 
         if (!dataBaseInput || isNaN(diasParaSubtrair)) {
             document.getElementById('res-subtracao').innerText = "Por favor, preencha a data e a quantidade de dias.";
@@ -849,10 +824,10 @@
     function calcularDiasUteis() {
         const d1 = document.getElementById('util-data1').value;
         const d2 = document.getElementById('util-data2').value;
-        const considerarSabado = document.getElementById('considerar-sabado').checked;
+        const considerarSabado = false; // Travado para sempre considerar Sábado como NÃO útil conforme pedido
         const descontarFeriados = document.getElementById('descontar-feriados').checked;
         const descontarRecife = document.getElementById('descontar-recife').checked;
-        const criterio = parseInt(document.getElementById('util-criterio').value);
+        const criterio = 0; 
 
         if (!d1 || !d2) {
             document.getElementById('res-uteis').innerText = "Por favor, preencha ambas as datas.";
