@@ -34,7 +34,7 @@
             line-height: 1.4;
             display: flex;
             flex-direction: column;
-        } solution
+        }
 
         /* Wrapper principal para empurrar o footer para o final */
         .wrapper {
@@ -309,6 +309,19 @@
             background: #FDF2F2;
         }
 
+        /* Estilo do Alerta de Próximo Evento */
+        .banner-evento {
+            background: #FFF2F2;
+            border: 1px solid #FADBD8;
+            border-left: 4px solid var(--alert-color);
+            padding: 10px;
+            border-radius: 4px;
+            font-size: 12px;
+            color: #78281F;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
         /* Estilização do Footer compactada */
         footer {
             flex-shrink: 0;
@@ -338,48 +351,6 @@
             letter-spacing: 1px;
         }
 
-        /* =========================================================================
-           👴🏽 ADICIONADO: REGRAS DE ACESSIBILIDADE DIRECIONADAS SEM ALTERAR O LAYOUT
-           ========================================================================= */
-        .container label {
-            font-size: 15.5px;
-            font-weight: 700;
-            color: #111111;
-        }
-        .container input, .container select {
-            padding: 11px 12px;
-            font-size: 15.5px;
-            border: 2px solid #A0AAB0;
-            color: #111111;
-        }
-        .container .btn-action {
-            padding: 13px;
-            font-size: 17.5px;
-            font-weight: 800;
-        }
-        .container .resultado {
-            font-size: 16px;
-            font-weight: 700;
-            line-height: 1.5;
-        }
-        .container .menu-tabs {
-            border-bottom: 3px solid #A0AAB0;
-        }
-        .container .tab-btn {
-            padding: 11px 10px;
-            font-weight: 700;
-            border: 2px solid #A0AAB0;
-        }
-        .container .checkbox-group input {
-            transform: scale(1.25);
-            margin-right: 10px;
-        }
-        .container .checkbox-group label {
-            font-size: 14.5px;
-            color: #111111;
-        }
-        /* ========================================================================= */
-
         /* Responsividade Total */
         @media (max-width: 850px) {
             .main-layout {
@@ -388,6 +359,9 @@
             }
             .sidebar-feriados {
                 width: 100%;
+            }
+            .lista-feriados-scroll {
+                max-height: none;
             }
         }
     </style>
@@ -965,7 +939,7 @@
     }
 
     // =========================================================================
-    // 🔒 TRAVA DE SEGURANÇA
+    // 🔒 TRAVA DE SEGURANÇA: BLOQUEIO DE INSPEÇÃO E CÓDIGO FONTE (CLIENT-SIDE)
     // =========================================================================
     document.addEventListener('contextmenu', function(e) {
         e.preventDefault();
